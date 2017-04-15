@@ -36,16 +36,18 @@
     
     _titleLabel = [UILabel new];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
-    _titleLabel.textColor = [UIColor redColor];
+    _titleLabel.textColor = [UIColor colorWithRed:249.0/255 green:123.0/255 blue:134.0/255 alpha:100];
     [self.contentView addSubview:_titleLabel];
     
     _contentLabel = [UILabel new];
+    _contentLabel.textColor = [UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255 alpha:100];
+    _contentLabel.font = [UIFont systemFontOfSize:16];
     [self.contentView addSubview:_contentLabel];
     
     
-    _titleLabel.sd_layout.widthIs(kScreenWidth - kMarg *2).heightIs(kHeightLabel).topSpaceToView(self.contentView, kMarg);
+    _titleLabel.sd_layout.widthIs(kScreenWidth - kMarg *4).heightIs(kHeightLabel).topSpaceToView(self.contentView, kMarg).leftSpaceToView(self.contentView,kMarg * 2);
 
-    _contentLabel.sd_layout.topSpaceToView(_titleLabel, kMarg).rightSpaceToView(self.contentView, kMarg).leftSpaceToView(self.contentView,kMarg).autoHeightRatio(0);
+    _contentLabel.sd_layout.topSpaceToView(_titleLabel, kMarg).rightSpaceToView(self.contentView, kMarg * 2).leftSpaceToView(self.contentView,kMarg * 2).autoHeightRatio(0);
     
     
     //***********************高度自适应cell设置步骤************************
@@ -57,7 +59,7 @@
 -(void)setText:(NSString *)text{
     
     _titleLabel.text = @"愿你被这个世界温柔相待";
-    _contentLabel.text = text;
+    _contentLabel.text = [NSString stringWithFormat:@"        %@",text];
 }
 
 
