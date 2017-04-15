@@ -39,6 +39,11 @@
 
 -(void)addSubviews{
     
+    
+    UIImageView *lineView = [UIImageView new];
+    lineView.backgroundColor = [UIColor whiteColor];
+    [self.contentView addSubview:lineView];
+    
     _titleLabel = [UILabel new];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.textColor = [UIColor colorWithRed:249.0/255 green:123.0/255 blue:134.0/255 alpha:100];
@@ -56,10 +61,11 @@
     [self.contentView addSubview:_imageView];
     
     
-    _titleLabel.sd_layout.widthIs(kScreenWidth - kMarg *4).heightIs(kHeightLabel).topSpaceToView(self.contentView, kMarg).leftSpaceToView(self.contentView,kMarg * 2);
+    lineView.sd_layout.widthIs(kScreenWidth).heightIs(kMarg).topSpaceToView(self.contentView,0);
+    
+    _titleLabel.sd_layout.widthIs(kScreenWidth - kMarg *4).heightIs(kHeightLabel).topSpaceToView(lineView, kMarg).leftSpaceToView(self.contentView,kMarg * 2);
 
     _contentLabel.sd_layout.topSpaceToView(_titleLabel, kMarg).rightSpaceToView(self.contentView, kMarg * 2).leftSpaceToView(self.contentView,kMarg * 2).autoHeightRatio(0);
-    
     
     _imageView.sd_layout.topSpaceToView(_contentLabel,kMarg).rightSpaceToView(self.contentView, kMarg * 12).leftSpaceToView(self.contentView,kMarg * 12).heightIs(230);
     
@@ -76,6 +82,8 @@
     _imageView.image = [UIImage imageNamed:model.image];
     
     //***********************高度自适应cell设置步骤************************
+    
+    
     [self setupAutoHeightWithBottomView:_imageView bottomMargin:20];
     
 }
