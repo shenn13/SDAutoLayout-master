@@ -52,7 +52,6 @@
     
     
     _imageView = [UIImageView new];
-    
     _imageView.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:_imageView];
     
@@ -77,8 +76,6 @@
     _imageView.image = [UIImage imageNamed:model.image];
     
     //***********************高度自适应cell设置步骤************************
-    
-    
     [self setupAutoHeightWithBottomView:_imageView bottomMargin:20];
     
 }

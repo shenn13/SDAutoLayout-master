@@ -145,11 +145,9 @@
     if (!cell) {
         cell = [[MainTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    
     cell.model = _dataArr[indexPath.row];
     
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
-    
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
     return cell;
@@ -159,7 +157,6 @@
     return [_tableView cellHeightForIndexPath:indexPath model:_dataArr[indexPath.row] keyPath:@"model" cellClass:[MainTableViewCell class] contentViewWidth:[self cellContentViewWith]];
 
 }
-
 
 
 - (CGFloat)cellContentViewWith{
