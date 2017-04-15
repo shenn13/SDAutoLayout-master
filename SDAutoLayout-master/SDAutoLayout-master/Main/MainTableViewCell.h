@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MainModel;
 @interface MainTableViewCell : UITableViewCell
 
-@property (nonatomic,strong) NSString *text;
+@property (nonatomic,strong) MainModel *model;
 
 @end

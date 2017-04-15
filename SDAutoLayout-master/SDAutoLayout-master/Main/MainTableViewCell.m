@@ -7,6 +7,7 @@
 //
 
 #import "MainTableViewCell.h"
+#import "MainModel.h"
 
 
 #import "UIView+SDAutoLayout.h"
@@ -23,10 +24,14 @@
 @implementation MainTableViewCell{
     UILabel *_titleLabel;
     UILabel *_contentLabel;
+    UIImageView *_imageView;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        self.backgroundColor = [UIColor colorWithRed:240.0/255 green:241.0/255 blue:236.0/255 alpha:1];
+        
         [self addSubviews];
     }
     return self;
@@ -42,7 +47,14 @@
     _contentLabel = [UILabel new];
     _contentLabel.textColor = [UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255 alpha:100];
     _contentLabel.font = [UIFont systemFontOfSize:16];
+    _contentLabel.numberOfLines = 0;
     [self.contentView addSubview:_contentLabel];
+    
+    
+    _imageView = [UIImageView new];
+    
+    _imageView.backgroundColor = [UIColor yellowColor];
+    [self.contentView addSubview:_imageView];
     
     
     _titleLabel.sd_layout.widthIs(kScreenWidth - kMarg *4).heightIs(kHeightLabel).topSpaceToView(self.contentView, kMarg).leftSpaceToView(self.contentView,kMarg * 2);
@@ -50,19 +62,26 @@
     _contentLabel.sd_layout.topSpaceToView(_titleLabel, kMarg).rightSpaceToView(self.contentView, kMarg * 2).leftSpaceToView(self.contentView,kMarg * 2).autoHeightRatio(0);
     
     
+    _imageView.sd_layout.topSpaceToView(_contentLabel,kMarg).rightSpaceToView(self.contentView, kMarg * 12).leftSpaceToView(self.contentView,kMarg * 12).heightIs(230);
+    
+
+  
+}
+
+
+-(void)setModel:(MainModel *)model{
+    _model = model;
+    
+    _titleLabel.text = model.title;
+    _contentLabel.text = [NSString stringWithFormat:@"        %@",model.content];
+    _imageView.image = [UIImage imageNamed:model.image];
+    
     //***********************高度自适应cell设置步骤************************
     
     
-    [self setupAutoHeightWithBottomView:_contentLabel bottomMargin:10];
-}
-
--(void)setText:(NSString *)text{
+    [self setupAutoHeightWithBottomView:_imageView bottomMargin:20];
     
-    _titleLabel.text = @"愿你被这个世界温柔相待";
-    _contentLabel.text = [NSString stringWithFormat:@"        %@",text];
 }
-
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
